@@ -60,7 +60,7 @@ def main():
     cat_to_name = fc_model.map_labels(category_names)
     names = [cat_to_name[c] for c in classes]
     
-    print('Probabilities', [float(round(p * 100.0, 2)) for p in probs])
+    print('Probabilities (%)', [float(round(p * 100.0, 2)) for p in probs])
     print('Classes:', names)
     
     print("Top most likely class:", names[0])
