@@ -19,18 +19,23 @@ Specifically, I have trained my models and saved them as checkpoints that can be
 # Main files
 - predict.py - used to predict a flower species from an image
 - train.py - used to train our own model using a pretrained classifier (only support VGG and DenseNet architecture for now)
-- ImageClassifierProject.ipynb - process to develop this project
+- ImageClassifierProject.ipynb - the process to develop this project
 
 # Dependencies (via conda recommended)
-- Standard Python 3 package
-- matplotlib
-- torch
+- Core Python 3 packages
+- pytorch
 - torchvision
+- PIL (pillow)
 
-i.e. conda install python numpy pandas matplotlib torch torchvision
+E.g. tested on MacOS
+```
+$ conda install python=3 numpy pandas pillow pytorch torchvision -c pytorch
+```
 
-# Below is the result of my model training on the flower testset with (kind of) various architectures and hyperparameters
-| Architecture | Epochs | Hidden Layers | Learning Rate | Accuracy | Saved                                           |
+*I had a few package conflicts when installing the dependencies. The best way to solve these problems is to create a new environment with conda and install the packages there.*
+
+### Below is the result of my model training on the flower testset with various architectures and hyperparameters
+| Architecture | Epochs | Hidden Layers | Learning Rate | Accuracy | Model Saved                                     |
 | ------------ | ------ | ------------- | ------------- | -------- | ----------------------------------------------- |
 | VGG16        | 3      | [2048, 1024]  | 0.001         | 76.07%   |                                                 |
 | VGG16        | 1      | [4096, 2048]  | 0.001         | 64.10%   |                                                 |
@@ -49,12 +54,25 @@ i.e. conda install python numpy pandas matplotlib torch torchvision
 $ python predict.py [path to your image] [path to checkpoint] [optional flags]
 ```
 
---top_k - number of classes with top highest probabilities  
+--top_k - number of results with top highest probabilities  
 --gpu - whether to utilize gpu to train
 
-i.e.
+E.g.
 ```  
 $ python predict.py img001.jpg DenseNet_1664_[1024]_102_5_0.001_checkpoint.pth --top_k 3
 ```
 
 More examples can be found in predict.py
+
+Outputs from running the above command:
+```
+Using CPU for calculations
+...
+Checkpoint loaded successfully!
+Model loaded successfully!
+Predicting the top 3 classes with DenseNet pre-trained model | device=cpu.
+Probabilities (%) [96.33, 1.54, 0.36]
+Classes: ['rose', 'sword lily', 'bromelia']
+Top most likely class: rose
+
+```
