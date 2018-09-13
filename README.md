@@ -1,5 +1,4 @@
-# Image Classifier  
-# Developing an AI application
+# Image Classifier - Developing an AI application
 
 Going forward, AI algorithms will be incorporated into more and more everyday applications. For example, you might want to include an image classifier in a smart phone app. To do this, you'd use a deep learning model trained on hundreds of thousands of images as part of the overall application architecture. A large part of software development in the future will be using these types of models as common parts of applications. 
 
@@ -15,9 +14,14 @@ The project is broken down into multiple steps:
 * Train the image classifier on your dataset
 * Use the trained classifier to predict image content
 
+# Main files
+- predict.py - used to predict a flower species from an image
+- train.py - used to train our own model using a pretrained classifier (only support VGG and DenseNet architecture for now)
+- ImageClassifierProject.ipynb - process to develop this project
+
 This is an application that can be trained on any set of labeled images. Here your network will be learning about flowers and end up as a command line application. But, what you do with your new skills depends on your imagination and effort in building a dataset. For example, imagine an app where you take a picture of a car, it tells you what the make and model is, then looks up information about it.
 
-I have trained my models and saved them as checkpoints that can be used to predict a flower species from an image. Basic usage can be found below.
+I have trained my models and saved them as checkpoints that can be used to predict a flower species from an image. In the future, if we want to train on a different dataset, we will need to retrain our model using train.py. Basic usage to predict a flower image species can be found below.
 
 # Dependencies (via conda recommended)
 Standard Python 3 package
@@ -27,7 +31,7 @@ torchvision
 
 i.e. conda install python numpy pandas matplotlib torch torchvision
 
-# Below is the result of my model training on the flower dataset with (kind of) various architectures and hyperparameters
+# Below is the result of my model training on the flower testset with (kind of) various architectures and hyperparameters
 | Architecture | Epochs | Hidden Layers | Learning Rate | Accuracy | Saved                                           |
 | ------------ | ------ | ------------- | ------------- | -------- | ----------------------------------------------- |
 | VGG16        | 3      | [2048, 1024]  | 0.001         | 76.07%   |                                                 |
@@ -47,7 +51,6 @@ i.e. conda install python numpy pandas matplotlib torch torchvision
 $ python predict.py [path to your image] [path to checkpoint] [optional flags]
 ```
 
-
 --top_k - number of classes with top highest probabilities  
 --gpu - whether to utilize gpu to train
 
@@ -56,8 +59,4 @@ i.e.
 $ python predict.py img001.jpg DenseNet_1664_[1024]_102_5_0.001_checkpoint.pth --top_k 3
 ```
 
-
-
-
-
-
+More examples can be found in predict.py
