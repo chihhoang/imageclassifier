@@ -31,10 +31,11 @@ def pretrain(network):
 
     return pretrained_model
 
-# Define network architecture, build our model using the loaded pre-trained model
-
 
 def build_model(arch, input_size, hidden_layers, output_size, drop_p=0.5):
+    '''
+    Define network architecture, build our model using the loaded pre-trained model
+    '''
 
     # Load a pre-trained model
     model = pretrain(arch)
@@ -56,10 +57,12 @@ def build_model(arch, input_size, hidden_layers, output_size, drop_p=0.5):
 
     return model
 
-# Train a model with a pre-trained network
-
 
 def train_model(model, trainloader, validloader, epochs, print_every, criterion, optimizer, device='cpu'):
+    '''
+    Train a model with a pre-trained network
+    '''
+
     steps = 0
 
     # turn on drop-out
@@ -140,10 +143,11 @@ def validation(model, validloader, criterion):
 
     return test_loss, accuracy
 
-# Do validation on the test set
-
 
 def check_accuracy_on_test(model, testloader):
+    '''
+    Do validation on the test set
+    '''
     correct = 0
     total = 0
     image_count = 0
