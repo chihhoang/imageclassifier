@@ -12,14 +12,14 @@ The project is broken down into multiple steps:
 * Train the image classifier on your dataset
 * Use the trained classifier to predict image content
 
-This is an application that can be trained on any set of labeled images. Here your network will be learning about flowers and end up as a command line application. But, what you do with your new skills depends on your imagination and effort in building a dataset. For example, imagine an app where you take a picture of a car, it tells you what the make and model is, then looks up information about it.
+This is an application that can be trained on any set of labeled images. Here your network will be learning about flowers and end up as a command line application. But, what you do with these new skills depends on your imagination and effort in building a dataset. For example, imagine an app where you take a picture of a car, it tells you what the make and model is, then looks up information about it.
 
 Specifically, I have trained my models and saved them as checkpoints that can be used to predict species of a flower from an image. In the future, if we want to train on a different dataset, we will need to retrain our model using train.py. Basic usage to predict a flower image species can be found below.
 
 # Main files
 - predict.py - used to predict a flower species from an image
 - train.py - used to train our own model using a pretrained classifier (only support VGG and DenseNet architecture for now)
-- ImageClassifierProject.ipynb - the process to develop this project
+- ImageClassifierProject.ipynb - the detailed process on how I developed this project
 
 # Dependencies (via conda recommended)
 - Core Python 3 packages
@@ -27,14 +27,14 @@ Specifically, I have trained my models and saved them as checkpoints that can be
 - torchvision
 - PIL (pillow)
 
-E.g. tested on MacOS
+E.g. (tested on MacOS)
 ```
 $ conda install python=3 numpy pandas pillow pytorch torchvision -c pytorch
 ```
 
-*I had a few package conflicts when installing the dependencies. The best way to solve these problems is to create a new environment with conda and install the packages there.*
+*I had a few package conflicts when installing the dependencies. The best way to solve these kind of problems is to create a new environment with conda and install the packages there.*
 
-### Below is the result of my model training on the flower testset with various architectures and hyperparameters
+### Below is the results of my model on the flower testset with various architectures and hyperparameters
 | Architecture | Epochs | Hidden Layers | Learning Rate | Accuracy | Model Saved                                     |
 | ------------ | ------ | ------------- | ------------- | -------- | ----------------------------------------------- |
 | VGG16        | 3      | [2048, 1024]  | 0.001         | 76.07%   |                                                 |
@@ -49,20 +49,20 @@ $ conda install python=3 numpy pandas pillow pytorch torchvision -c pytorch
 | DenseNet169  | 4      | [1024]        | 0.001         | 90.60%   | DenseNet_1664_[1024]_102_5_0.001_checkpoint.pth |
 
 
-# Basic Usages
+# Basic Command Line Usage
 ```
 $ python predict.py [path to your image] [path to checkpoint] [optional flags]
 ```
-
+Flags:  
 --top_k - number of results with top highest probabilities  
---gpu - whether to utilize gpu to train
+--gpu - utilize gpu to predict flower categories
 
 E.g.
 ```  
 $ python predict.py img001.jpg DenseNet_1664_[1024]_102_5_0.001_checkpoint.pth --top_k 3
 ```
 
-More examples can be found in predict.py
+More examples can be found in predict.py file.
 
 Outputs from running the above command:
 ```
@@ -71,8 +71,8 @@ Using CPU for calculations
 Checkpoint loaded successfully!
 Model loaded successfully!
 Predicting the top 3 classes with DenseNet pre-trained model | device=cpu.
-Probabilities (%) [96.33, 1.54, 0.36]
-Classes: ['rose', 'sword lily', 'bromelia']
+Probabilities (%): [96.33, 1.54, 0.36]
+Classes:           ['rose', 'sword lily', 'bromelia']
 Top most likely class: rose
 
 ```
