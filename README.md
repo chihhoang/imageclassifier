@@ -29,7 +29,8 @@ Specifically, I have trained my models and saved them as checkpoints that can be
 
 E.g. (tested on MacOS)
 ```
-$ conda install python=3 numpy pandas pillow pytorch torchvision -c pytorch
+$ conda install python=3 numpy pandas matplotlib pillow pytorch -c pytorch
+$ pip install torchvision
 ```
 
 *I had a few package conflicts when installing the dependencies. The best way to solve these kind of problems is to create a new environment with conda and install the packages there.*
